@@ -1,4 +1,4 @@
-// Object literals -> Cobject initializer
+// Object literals -> Object initializer
 
 const obj = {
   property1: value1, // property name may be an identifier
