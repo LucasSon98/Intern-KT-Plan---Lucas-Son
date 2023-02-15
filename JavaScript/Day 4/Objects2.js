@@ -16,7 +16,7 @@ const obj = {
 
 
 // Using a constructor function
-
+per
 // 1 - Define the object type by writing a constructor function. There is a strong convention, with good reason, to use a capital initial letter.
 // 2 - Create an instance of the object with new.
 
@@ -49,6 +49,7 @@ const car1 = new Car("Eagle", "Talon TSi", 1993, rand);
 // Example:
 
 // Animal properties and method encapsulation
+
 const Animal = {
   type: "Invertebrates", // Default value of properties
   displayType() {
@@ -272,3 +273,31 @@ foo.prop = "exists";
 foo.hasOwnProperty("prop"); // Uncaught TypeError: foo.hasOwnProperty is not a function
 
 // The solutions in this case are the same as for the previous section: use Object.hasOwn() by preference, otherwise use an external object's hasOwnProperty()
+
+
+// -- instance of operator
+// The instanceof operator tests to see if the prototype property of a constructor appears anywhere in the prototype chain of an object.
+// Example:
+
+function Car(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+}
+
+function User(name, surname, age) {
+  this.name = name;
+  this.surname = surname;
+  this.age = age;
+}
+
+const auto = new Car('Honda', 'Accord', 1998);
+
+console.log(auto instanceof Car);
+// Expected output: true
+
+console.log(auto instanceof Object);
+// Expected output: true
+
+console.log(auto instanceof User);
+// Expected output: false
