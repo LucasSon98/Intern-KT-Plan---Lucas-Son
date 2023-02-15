@@ -1,0 +1,2 @@
+loosely typed language: no need to specify types of variables and objects.
+strngly typed langueage: it is a requirement to specify variable and object types.
