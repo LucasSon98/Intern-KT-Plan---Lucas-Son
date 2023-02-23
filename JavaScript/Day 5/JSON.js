@@ -247,7 +247,13 @@ hello\x00                    // field name
 // Requesting an external script from another domain does not have this problem.
 // JSONP uses this advantage, and request files using the script tag instead of the XMLHttpRequest object.
 
-// Here is a full example of how this is done
+// Here is a full example on how this is done
+
+// In the next html code we have 2 js functions declared inside the script tag
+// The function clickButton is meant to be triggered when the button onclick action is activated
+// This function will generate a script tag which will take the php file bellow
+// demo_json.php contains an object in JSON format which is passed as an argument when calling the myFunc function declared in the html file, in the script tag
+// myFunc gets the object name and places it in the p tag with id "demo"
 
 <!DOCTYPE html>
 <html>
@@ -276,6 +282,7 @@ function myFunc(myObj) {
 
 </body>
 </html>
+
 
 
 
