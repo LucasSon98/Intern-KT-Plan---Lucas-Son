@@ -15,20 +15,20 @@ let result = 'hello';
 console.log(result);
 
 result = Number(result);
-console.log(result);
+console.log(result); // Expected output: NaN, since we can't convert chars to numbers
 
 score = String(score);
-console.log(score, typeof score);
+console.log(score, typeof score); 
 
 
 result = Boolean(0);
-console.log(result, typeof result)
+console.log(result, typeof result) // Expected output: false 'boolean'
 
 result = Boolean(1);
-console.log(result, typeof result)
+console.log(result, typeof result) // Expected output: true 'boolean'
 
 result = Boolean('sd');
-console.log(result, typeof result)
+console.log(result, typeof result) // Expected output: true 'boolean'
 
 result = Boolean('');
-console.log(result, typeof result)
+console.log(result, typeof result) // Expected output: false 'boolean'
