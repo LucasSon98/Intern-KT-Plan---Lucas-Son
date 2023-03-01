@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="main.js" defer></script>
+    <title>TODO List</title>
+    <style>
+        ul li:hover, ul li:focus {
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="Welcome_menu">
+        <h1>Welcome to the TODO List Creator</h1>
+        <p>Enter your information:</p>
+        <label for="Name">Name:</label>
+        <input id="Name" type="text" required>
+        <label for="Surname">Surname:</label>
+        <input id="Surname" type="text" required>
+        <br><br>
+        <button id="Next">Next</button>
+    </div>
+
+    <div id="List_creation_menu" hidden="hidden">
+        <h1>TO DO LIST</h1>
+        <h2 id="Welcome_user"></h2>
+        <div id="upper_buttons">
+            <button id="Create">Create new item</button>
+            <button id="Remove">Remove items</button>
+        </div>
+
+        <br>
+        
+        <div id="Enter_activity" hidden="hidden">
+            <label for="TODO_input">Enter activity</label>
+            <input id="TODO_input" type="text">
+            <button id="Upload">Upload</button>
+            <button id="Discard">Discard</button>
+        </div>
+        
+        <div id="list_div" hidden="hidden">
+            <h3 id="remove_message" hidden="hidden">Check activities to remove and press Finish to end</h2>
+            <ul id="list">
+            </ul>
+        </div>
+
+        <button id="Finish" hidden="hidden">Finish</button>
+    </div>
+        
+</body>
+</html>

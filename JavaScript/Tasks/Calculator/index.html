@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script type="text/javascript" src="main.js" defer></script>
+    <style>
+        button {
+            width: 200px;
+            padding: 14px 40px;
+            font-size: 30px;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        button[name="operator"]{
+            background-color: dodgerblue;
+        }
+
+        button[name="other"]{
+            background-color: coral;
+        }
+
+        button[name="number"]{
+            background-color: rgb(255, 255, 255);
+        }
+
+        button[name="finish"]{
+            background-color: rgb(233, 61, 61);
+        }
+
+        #operation_display{
+            height: 30px;
+            padding: 10px 10px;
+            width: 40%;
+            border-style: solid;
+        }
+
+        #operation, #result{
+            position: relative;
+            font-size: 30px;
+        }
+        
+    </style>
+</head>
+<body>
+    <center>
+        <div id="operation_display">
+            <output id="operation"></output>
+        </div>
+    </center>
+
+    <br><br>
+
+    <div id="calculator"> 
+        <div class="buttons">
+            <button name="number" value="7">7</button>
+            <button name="number" value="8">8</button>
+            <button name="number" value="9">9</button>
+            <button name="operator" value="+">+</button>
+        </div>
+        
+        <div class="buttons">
+            <button name="number" value="4">4</button>
+            <button name="number" value="5">5</button>
+            <button name="number" value="6">6</button>
+            <button name="operator" value="-">-</button>
+        </div>
+
+        <div class="buttons">
+            <button name="number" value="1">1</button>
+            <button name="number" value="2">2</button>
+            <button name="number" value="3">3</button>
+            <button name="operator" value=&times>&times;</button>
+        </div>
+        
+        <div class="buttons">
+            <button name="other" value=".">.</button>
+            <button name="number" value="0">0</button>
+            <button name="other" value="C">C</button>
+            <button name="operator" value=&divide>&divide;</button>
+        </div>
+
+        <div class="buttons">
+            <button name="operator" value=&sup2;>&sup2;</button>
+            <button name="operator" value=&sup3;>&sup3;</button>
+            <button name="other" value="AC">AC</button>
+            <button name="finish" value="=">=</button>
+        </div>
+    </div>
+
+    <br>
+    
+    <center id="result_display">
+        <h1 style="text-decoration: underline;">Result</h2>
+        <output id="result"></output>
+    </center>
+</body>
+</html>
