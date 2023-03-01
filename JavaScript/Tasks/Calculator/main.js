@@ -33,6 +33,5 @@ worker.addEventListener('message', message => {
     if (result === 'Infinity'){
         result = '\u{221E}';
     }
-    document.querySelector('#result').textContent = result;
-    document.querySelector('#operation').value = "";
+    document.querySelector('#operation').textContent = result;
   });
