@@ -1,0 +1,181 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="TODO_List_menu.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="TODO_List_menu.js" defer></script>
+    <title>TODO List</title>
+
+</head>
+<body>
+    <h1 style="display: inline;">Welcome to the TODO List Creator</h1>
+    <button id="LogOut" style="float: right;">Log Out</button>
+
+    <div class="tab" id="Tabs">
+        <button class="tablinks" value="Profile_tab">Profile</button>
+        <button class="tablinks" value="TODO_List_tab">TODO List</button>
+    </div>
+
+    <!-- TODO List Tab -->
+    <div id="TODO_List_tab" class="tabcontent">
+
+        <!-- UPPER BUTTONS -->
+
+        <div id="upper_buttons">
+            <button id="Create">Create new item</button>
+            <button id="Remove" hidden="hidden">Remove items</button>
+            <button id="Edit" hidden="hidden">Edit items</button>
+        </div>
+
+        <br>
+
+        <!-- ACTIVITY CREATION BOX -->
+        
+        <div id="Enter_activity" hidden="hidden">
+            <label for="TODO_input">Enter activity</label>
+            <input id="TODO_input" type="text">
+
+            <br><br>
+
+            <label for="category">Select one of the next categories:</label>
+            <select name="category" id="category" value="">
+                <option value="" disabled selected>Select your option</option>
+                <option value="Work">Work</option>
+                <option value="Home Chores">Home Chores</option>
+                <option value="Hobby">Hobby</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <br><br>
+
+            <label for="due_date">Select due date:</label>
+            <input type="date" id="due_date" name="due_date">
+
+            <label for="due_time">Select due time:</label>
+            <input type="time" id="due_time" name="due_time">
+
+            <br><br>
+
+            <button id="Upload_create">Upload</button>
+            <button id="Discard_create">Discard</button>
+            <span id="Upload_create_error_message" style="color: red"></span>
+        </div>
+
+
+        <!-- TODO LIST BOX -->
+        
+        <div id="list_div" hidden="hidden">
+            <!-- This box is shared for both Remove and Edit modes -->
+            <!-- Depending on the mode, a different guiding message will appear -->
+            <h3 id="remove_guide_message" hidden="hidden">Check activities to remove and press Finish to end</h3>
+            <h3 id="edit_guide_message" hidden="hidden">Check an activity to edit</h3>
+            
+            <ul id="list">
+            </ul>
+
+            <br>
+
+            <!-- EDIT BOX. Only available when a TODO item has been selected in the Edit mode-->
+
+            <div id="Edit_box" hidden="hidden">
+                <!-- All the properties of the current activity are displayed in input elements which are disabled at first-->
+                <!-- When a respective Edit button is pressed that input field will be available to be edited -->
+                <label for="current_activity">Activity:</label>
+                <input id="current_activity" type="text" disabled>
+                <button id="Edit_activity_button">Edit</button>
+                <br><br>
+
+                <label for="current_category">Category:</label>
+                <select name="current_category" id="current_category" disabled>
+                    <option value="Work">Work</option>
+                    <option value="Home Chores">Home Chores</option>
+                    <option value="Hobby">Hobby</option>
+                    <option value="Other">Other</option>
+                </select>
+                <button id="Edit_category_button">Edit</button>
+                <br><br>
+
+                <label for="current_due_date">Due Date:</label>
+                <input type="date" id="current_due_date" name="current_due_date" disabled>
+                <button id="Edit_due_date_button">Edit</button>
+                <br><br>
+
+                <label for="current_due_time">Due Time:</label>
+                <input type="time" id="current_due_time" name="current_due_time" disabled>
+                <button id="Edit_due_time_button">Edit</button>
+                <br><br>
+
+                <button id="Complete_edit">Complete</button>
+                <button id="Discard_edit">Discard</button>
+                <button id="Cancel_edit2"">Cancel</button>
+
+                <br>
+                <span id="List_edit_error" style="color: red;" hidden="hidden">There is an empty field. Please fill all inputs.</span>
+
+            </div>
+
+            <br><br>
+
+            <!-- Remove mode related buttons. Only available in Remove mode -->
+            <button id="Finish_remove" hidden="hidden">Finish</button>
+            <button id="Cancel_remove" hidden="hidden">Cancel</button>
+
+            <button id="Cancel_edit1" hidden="hidden">Cancel</button>
+        </div>
+
+    </div>
+
+    <!-- User Profile Tab -->
+    <div id="Profile_tab" class="tabcontent">
+        <center>
+            <img id="user_profile_picture" src="" alt="" style="width: 250px; height: 250px;">
+            
+            <br>
+            <label for="edit_user_profile_picture" hidden="hidden">
+                Select Profile Picture:
+                <input type="file" id="edit_user_profile_picture" name="filename" accept="image/*" />
+                <img id="edit_user_profile_picture_img" src="" alt="" hidden="hidden">
+            </label>
+        </center>
+
+        <br><br>
+
+        <label for="user_first_name">First Name: </label>
+        <input id="user_first_name" type="text" disabled>
+        <br><br>
+        
+        <label for="user_last_name">Last Name: </label>
+        <input id="user_last_name" type="text" disabled>
+        <br><br>
+
+
+        <label for="user_gender">Gender: </label>
+
+        <select name="user_gender" id="user_gender" disabled>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        <br><br>
+
+        <p style="display: inline;">Address</p>
+        <label for="user_address_street">Street: </label>
+        <input type="text" id="user_address_street" name="user_address_street" disabled>
+
+
+        <label for="user_address_number">Number: </label>
+        <input type="text" id="user_address_number" name="user_address_number" disabled>
+        
+        <br><br>
+
+        <button id="Edit_profile">Edit Profile</button>
+        <button id="Apply_changes" hidden="hidden">Apply Changes</button>
+        <button id="Cancel_profile_edit" hidden="hidden">Cancel</button>
+        <br>
+        <span id="Profile_edit_error" style="color: red;" hidden="hidden"> There is an empty field. Please fill all inputs.</span>
+        
+    </div>
+        
+</body>
+</html>
