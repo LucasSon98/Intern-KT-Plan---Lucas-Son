@@ -25,6 +25,8 @@ const Edit_due_time_button = document.getElementById('Edit_due_time_button');
 const Complete_edit_button = document.getElementById('Complete_edit');
 const Discard_edit_button = document.getElementById('Discard_edit');
 
+// - Sort/Filter button
+const sort_filter_button = document.getElementById('Sort/Filter')
 
 // - Edit Profile Buttons
 const edit_profile_button = document.getElementById('Edit_profile');
@@ -34,9 +36,15 @@ const cancel_profile_edit_button = document.getElementById('Cancel_profile_edit'
 // - LOGOUT Button
 const logout_button = document.getElementById('LogOut');
 
+// - List manipulation Buttons
+const apply_filter_button = document.getElementById('Apply Filter Button');
+const remove_filter_button = document.getElementById('Remove Filter Button');
+const sort_button = document.getElementById('Sort Button');
+const close_sort_filter_button = document.getElementById('Close Sort/Filter');
+const apply_sort_button = document.getElementById('Sort button');
 
 
-// Inputs 
+// Inputs and Select
 
 // - Item Creation
 const TODO_input = document.getElementById('TODO_input');
@@ -49,6 +57,9 @@ const current_activity_input = document.getElementById('current_activity');
 const current_category_input = document.getElementById('current_category');
 const current_due_date_input = document.getElementById('current_due_date');
 const current_due_time_input = document.getElementById('current_due_time');
+
+// - Filter List selector
+const filter_list_selector = document.getElementById('Filter List');
 
 // Span (for error messages)
 
@@ -69,6 +80,7 @@ const enter_activity = document.querySelector('#Enter_activity');
 const body = document.querySelector('body');
 const upper_buttons_div = document.getElementById('upper_buttons');
 const edit_box_div = document.getElementById('Edit_box');
+const list_manipulation_div = document.getElementById('List_manipulation_div');
 
 // Tab buttons
 const tabs_div = document.getElementById('Tabs');
@@ -101,10 +113,11 @@ window.onload = function() {
         list.innerHTML = current_user_TODO_List; // fill the ul element with the li elements of the stored list
         
         if (current_user_TODO_List.trim() !== ""){
-            // Show the list div and the remove and edit buttons which are hidden by default
+            // Show the list div and the remove and edit buttons, and the list manipulation div which are hidden by default
             list_div.removeAttribute('hidden');
             Remove_button.removeAttribute('hidden');
             Edit_button.removeAttribute('hidden');
+            sort_filter_button.removeAttribute('hidden')
         }
             
     }
@@ -217,9 +230,13 @@ Create_button.addEventListener(
         upper_buttons_div.setAttribute('hidden','hidden');
 
         // If list box is displayed hide it
-
         if (list_div.getAttribute('hidden') === null){
             list_div.setAttribute('hidden','hidden');
+        }
+
+        // Hide filter and sort options if shown
+        if (!sort_filter_button.getAttribute('hidden')){
+            sort_filter_button.setAttribute('hidden','hidden');
         }
 
     }
@@ -264,9 +281,12 @@ Discard_create_button.addEventListener(
         empty_element_value(due_date_selector);
         empty_element_value(due_time_selector);
         
-        // Unhide Create button
-
+        // Unhide upper buttons
         upper_buttons_div.removeAttribute('hidden');
+
+        // Show TODO List
+        list_div.removeAttribute('hidden');
+
     }
 
 )
@@ -303,8 +323,11 @@ Upload_create_button.addEventListener(
 
             // create list item (li element)
             let li = document.createElement("li");
+
             // set text
             li.appendChild(document.createTextNode(`${TODO_input.value} | ${category_input.value} | ${due_date_selector.value} at ${due_time_selector.value}`));
+            
+
             // append to ul element
             list.appendChild(li);
 
@@ -319,7 +342,7 @@ Upload_create_button.addEventListener(
             empty_element_value(due_time_selector);
 
 
-            // Remove and Edit buttons remain hidden as long as there is no item in the list
+            // Remove and Edit buttons, and sort and filter options remain hidden as long as there is no item in the list
 
             // Now that the TODO list isn't empty I want the user to have access to these buttons
             if (Remove_button.getAttribute('hidden')){
@@ -328,6 +351,10 @@ Upload_create_button.addEventListener(
 
             if (Edit_button.getAttribute('hidden')){
                 Edit_button.removeAttribute('hidden');
+            }
+
+            if (sort_filter_button.getAttribute('hidden')){
+                sort_filter_button.removeAttribute('hidden');
             }
 
             // Unhide upper buttons
@@ -364,7 +391,7 @@ Remove_button.addEventListener(
 
             // hide upper buttons
             upper_buttons_div.setAttribute('hidden','hidden');
-            
+
         }
 
 )
@@ -383,9 +410,10 @@ Edit_button.addEventListener(
         // Hide upper buttons
         upper_buttons_div.setAttribute('hidden','hidden');
 
-
     }
 )
+
+
 
 Cancel_edit1_button.addEventListener(
     'click',
@@ -444,13 +472,17 @@ Finish_remove_button.addEventListener(
         Finish_remove_button.setAttribute("hidden","hidden");
         Cancel_remove_button.setAttribute("hidden","hidden");
 
-        if (list.innerHTML.trim() == ""){ // if all list elements where deleted hide the Remove and Edit buttons since there is nothing to remove or edit
+        if (list.innerHTML.trim() == ""){ // if all list elements where deleted hide the Remove and Edit buttons, and the list manipulation div since there is nothing to remove or edit
             if (Remove_button.getAttribute('hidden') == null){
                 Remove_button.setAttribute('hidden','hidden');
             }
 
             if (Edit_button.getAttribute('hidden') == null){
                 Edit_button.setAttribute('hidden','hidden');
+            }
+
+            if (sort_filter_button.getAttribute('hidden') == null){
+                sort_filter_button.setAttribute('hidden','hidden');
             }
         }
 
@@ -459,6 +491,7 @@ Finish_remove_button.addEventListener(
 
         // Update user todo list local storage
         localStorage.setItem(TODO_list_storage_key,list.innerHTML);
+        
     }
 )
 
@@ -952,3 +985,324 @@ document.getElementById('edit_user_profile_picture').addEventListener(
 
     }
 )
+
+
+// List manipulation Buttons Event Listeners
+
+
+sort_filter_button.addEventListener('click', () => {
+    list_manipulation_div.removeAttribute('hidden');
+
+    // hide upper buttons
+    if(!upper_buttons_div.getAttribute('hidden')){
+        upper_buttons_div.setAttribute('hidden','hidden');
+    }
+
+    // hide error messages if there are any unhidden
+    const sort_filter_error_messages = document.querySelectorAll('span[name="error message sort/filter"]');
+    sort_filter_error_messages.forEach((element) => {
+        if(!element.getAttribute('hidden')){
+            element.setAttribute('hidden','hidden');
+        }
+    })
+
+    const sort_filter_inputs = document.querySelectorAll('[name="sort/filter input"]');
+    sort_filter_inputs.forEach((element) => {
+        if(element.style.border != ""){
+            element.style.border = "";
+        }
+    })
+
+})
+
+filter_list_selector.addEventListener('change', (element) => {
+    let value = element.target.value;
+    const sort_date_range_div = document.getElementById('Filter date range');
+    const sort_category_div = document.getElementById('Filter category');
+    const filter_error_message = document.getElementById('Filter error message');
+
+    if(!filter_error_message.getAttribute('hidden')){
+        filter_error_message.setAttribute('hidden','hidden');
+        element.target.style.border = "";
+    }
+
+    if(value === "Date range"){
+        if (sort_date_range_div.getAttribute('hidden')){
+            sort_date_range_div.removeAttribute('hidden');
+        }
+
+        if (!sort_category_div.getAttribute('hidden')){
+            sort_category_div.setAttribute('hidden','hidden');
+        }
+    }else if (value === "Category"){
+        if (sort_category_div.getAttribute('hidden')){
+            sort_category_div.removeAttribute('hidden');
+        }
+
+        if (!sort_date_range_div.getAttribute('hidden')){
+            sort_date_range_div.setAttribute('hidden','hidden');
+        }
+    }else{
+        if (!sort_category_div.getAttribute('hidden')){
+            sort_category_div.setAttribute('hidden','hidden');
+        }
+
+        if (!sort_date_range_div.getAttribute('hidden')){
+            sort_date_range_div.setAttribute('hidden','hidden');
+        }
+    }
+})
+
+
+
+apply_filter_button.addEventListener('click', ()=> {
+    const filter = document.getElementById('Filter List');
+    const filter_error_message = document.getElementById('Filter error message');
+
+    let filter_isEmpty = check_empty_input(filter);
+
+    // Check if a filter option has been selected
+    if (filter_isEmpty){// Uppon empty filter option
+        // show error message if hidden
+        if(filter_error_message.getAttribute('hidden')){
+            filter_error_message.removeAttribute('hidden');
+        }
+
+    }else{ // If not empty check which option was selected
+        // First hide error message if shown
+        if(!filter_error_message.getAttribute('hidden')){
+            filter_error_message.setAttribute('hidden','hidden');
+        }
+
+        const list_items = document.querySelectorAll('li');
+
+        if(filter.value === "Date range"){ 
+            const date_filter_from = document.getElementById('from_date_filter');
+            const date_filter_to = document.getElementById('to_date_filter');
+            const date_filter_error_message = document.getElementById('Filter date range error');
+
+            let date_filter_from_isEmpty = check_empty_input(date_filter_from);
+            let date_filter_to_isEmpty = check_empty_input(date_filter_to);
+
+            if(date_filter_from_isEmpty || date_filter_to_isEmpty){ // Check that both input fields for filtering by date range are filled
+                if(date_filter_error_message.getAttribute('hidden')){
+                    date_filter_error_message.removeAttribute('hidden');
+                }
+            }else{
+
+                if(!date_filter_error_message.getAttribute('hidden')){
+                    date_filter_error_message.setAttribute('hidden','hidden');
+                }
+
+                // filter list by date range
+                list_items.forEach((element) => {
+                    let item_text = element.innerHTML;
+                    item_text = item_text.split(' | ');
+                    let item_due_date = item_text[2];
+                    item_due_date = item_due_date.split(' at ');
+                    item_due_date = item_due_date[0];
+                    
+                    if ( date_filter_from.value >= item_due_date || item_due_date >= date_filter_to.value){
+                        element.setAttribute('hidden','hidden');
+                    }
+                    
+                })
+            }
+                
+        }else if(filter.value === "Category"){
+            const category_filter_error_message = document.getElementById('Filter category error');
+            let category_filter_isEmpty;
+
+            // Check if any of gender filter options has been selected
+            const category_filter = document.querySelector('input[name="category"]:checked'); // This returns the gender radio button which is checked. If no such it returns null. 
+            if (category_filter == null){
+                if(category_filter_error_message.getAttribute('hidden')){
+                    category_filter_error_message.removeAttribute('hidden');
+                }
+                category_filter_isEmpty = true;
+            }else{
+                if(!category_filter_error_message.getAttribute('hidden')){
+                    category_filter_error_message.setAttribute('hidden','hidden');
+                }
+                category_filter_isEmpty = false;
+            }
+
+            // filter list by chosen category as long as one option has been selected
+             
+            if(!category_filter_isEmpty){
+                list_items.forEach((element) => {
+                    let item_text = element.innerHTML;
+                    item_text = item_text.split(' | ');
+                    let item_category = item_text[1];
+                    
+                    if (item_category !== category_filter.value){
+                        element.setAttribute('hidden','hidden');
+                    }
+                })
+            }
+    
+
+        }else if(filter.value == "Status Done"){
+            // filter list by chosen category
+            list_items.forEach((element) => {
+                if (element.style.textDecoration !== "line-through"){
+                    element.setAttribute('hidden','hidden');
+                }
+            })
+
+        }else if(filter.value == "Status Pending"){
+            // filter list by chosen category
+            list_items.forEach((element) => {
+                if (element.style.textDecoration !== ""){
+                    element.setAttribute('hidden','hidden');
+                }
+            })
+        }
+    }
+        
+})
+
+
+remove_filter_button.addEventListener('click', () => {
+    const TODO_list = document.querySelectorAll('li');
+
+    TODO_list.forEach((element) => {
+        if (element.getAttribute('hidden')){
+            element.removeAttribute('hidden');
+        }
+    })
+
+    const sort_filter_error_messages = document.querySelectorAll('span[name="error message sort/filter"]');
+    sort_filter_error_messages.forEach((element) => {
+        if(!element.getAttribute('hidden')){
+            element.setAttribute('hidden','hidden');
+        }
+    })
+
+    const sort_filter_inputs = document.querySelectorAll('[name="sort/filter input"]');
+    sort_filter_inputs.forEach((element) => {
+        if(element.style.border != ""){
+            element.style.border = "";
+        }
+    })
+
+})
+
+
+close_sort_filter_button.addEventListener('click', () => {
+    // hide list manipulation div
+    if(!list_manipulation_div.getAttribute('hidden')){
+        list_manipulation_div.setAttribute('hidden','hidden')
+    }
+
+    // show upper buttons
+
+    if(upper_buttons_div.getAttribute('hidden')){
+        upper_buttons_div.removeAttribute('hidden');
+    }
+
+
+    const sort_filter_error_messages = document.querySelectorAll('span[name="error message sort/filter"]');
+    sort_filter_error_messages.forEach((element) => {
+        if(!element.getAttribute('hidden')){
+            element.setAttribute('hidden','hidden');
+        }
+    })
+
+    const sort_filter_inputs = document.querySelectorAll('[name="sort/filter input"]');
+    sort_filter_inputs.forEach((element) => {
+        if(element.style.border != ""){
+            element.style.border = "";
+        }
+    })
+})
+
+
+apply_sort_button.addEventListener('click', ()=> {
+    const sort_error_message = document.getElementById('Sort error message');
+    const sort_option = document.getElementById('Sort List');
+    let sort_option_isEmpty = check_empty_input(sort_option);
+
+    if(sort_option_isEmpty){
+        if(sort_error_message.getAttribute('hidden')){
+            sort_error_message.removeAttribute('hidden');
+        }
+    }else{
+        if(!sort_error_message.getAttribute('hidden')){
+            sort_error_message.setAttribute('hidden','hidden');
+        }
+
+        const TODO_list_array = []; // it is an array where each element is an obect containing the list li element's full innerHTML (item_text), the item's activity name (item_task) and the item's due date (item_due_date)
+        // I will use this array to sort by date or alphabetically depending the case
+        const TODO_list_array_original = []; // this just keeps the original order in which each item was created
+
+        const TODO_list = document.querySelectorAll('li');
+
+        TODO_list.forEach((element) => {
+            let item_text_original = element.innerHTML;
+            let item_text = item_text_original.split(' | ');
+            let item_task = item_text[0];
+            let item_due_date = item_text[2];
+            item_due_date = item_due_date.split(' at ');
+            item_due_date = item_due_date[0];
+
+            TODO_list_array.push({item_text: item_text_original, item_task:item_task.toLowerCase(), item_due_date: item_due_date});
+        })
+
+        if(/Alphabetically/.exec(sort_option.value)){ // if we are trying to sort Alphabetically
+            // Sorting two arrays using one of them (string sort) => https://www.freecodecamp.org/news/how-to-sort-alphabetically-in-javascript/
+            // number sort => arr.sort(functiona(a,b){return a.rowWidth - b.rowWidth}); Invert b and a in the return for descending
+            if(/Ascending/.exec(sort_option.value)){ // Sort ascending
+                TODO_list_array.sort(function (a, b) {
+                    if (a.item_task < b.item_task) {
+                      return -1;
+                    }
+                    if (a.item_task > b.item_task) {
+                      return 1;
+                    }
+                    return 0;
+                  });
+            }else{ // Else, sort descending
+                TODO_list_array.sort(function (a, b) {
+                    if (a.item_task < b.item_task) {
+                      return 1;
+                    }
+                    if (a.item_task > b.item_task) {
+                      return -1;
+                    }
+                    return 0;
+                  });
+            }
+        }else{ // else if we are trying to sort by Date
+            if(/Ascending/.exec(sort_option.value)){ // Sort ascending
+                TODO_list_array.sort(function (a, b) {
+                    if (a.item_due_date < b.item_due_date) {
+                      return -1;
+                    }
+                    if (a.item_due_date > b.item_due_date) {
+                      return 1;
+                    }
+                    return 0;
+                  });
+            }else{ // Else, sort descending
+                TODO_list_array.sort(function (a, b) {
+                    if (a.item_due_date < b.item_due_date) {
+                      return 1;
+                    }
+                    if (a.item_due_date > b.item_due_date) {
+                      return -1;
+                    }
+                    return 0;
+                  });
+            }
+        }
+        
+        // When finished sorting, update the list
+        TODO_list.forEach((element,i) => {
+            element.innerHTML = TODO_list_array[i].item_text;
+        })
+
+    }
+    
+
+})

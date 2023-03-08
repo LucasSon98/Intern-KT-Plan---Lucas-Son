@@ -26,6 +26,60 @@
             <button id="Create">Create new item</button>
             <button id="Remove" hidden="hidden">Remove items</button>
             <button id="Edit" hidden="hidden">Edit items</button>
+            <button id="Sort/Filter" hidden="hidden">Sort/Filter items</button>
+        </div>
+
+        <br>
+
+        <!-- LIST MANIPULATION -->
+        <div id="List_manipulation_div" hidden="hidden">
+            <label for="Sort List">Sort by:</label>
+            <select name="sort/filter input" id="Sort List" value="">
+                <option value="" disabled selected>Select your option</option>
+                <option value="Date Ascending">Date Ascending</option>
+                <option value="Date Descending">Date Descending</option>
+                <option value="Alphabetically Ascending">Alphabetically Ascending</option>
+                <option value="Alphabetically Descending">Alphabetically Descending</option>
+            </select>
+            <button id="Sort button">Apply Sort</button>
+            <span name="error message sort/filter" id="Sort error message" style="color:red;" hidden="hidden">No sort option was selected. Please select a filter option to apply a filter.</span>
+
+
+            <br><br>
+
+            <label for="Filter List">Filter by:</label>
+            <select name="sort/filter input" id="Filter List" value="">
+                <option value="" disabled selected>Select your option</option>
+                <option value="Date range">Date range</option>
+                <option value="Category">Category</option>
+                <option value="Status Done">Status Done</option>
+                <option value="Status Pending">Status Pending</option>
+                <option value="None">None</option>
+            </select>
+            <button id="Apply Filter Button">Apply Filter</button>
+            <button id="Remove Filter Button">Remove Filters</button>
+            <span name="error message sort/filter" id="Filter error message" style="color:red;" hidden="hidden">No filter option was selected. Please select a filter option to apply a filter.</span>
+
+            <br><br>    
+
+            <div id="Filter date range" hidden="hidden">
+                <label for="from_date_filter">From:</label>
+                <input  name="sort/filter input" type="date" id="from_date_filter" name="due_date">
+
+                <label for="to_date_filter">To:</label>
+                <input  name="sort/filter input" type="date" id="to_date_filter" name="due_date">
+
+                <span name="error message sort/filter" id="Filter date range error" style="color: red;" hidden="hidden">Complete both fields before applying filter</span>
+            </div>
+
+            <div id="Filter category" hidden="hidden">
+                <input type="radio" name="category" value="Work" id="Work filter">Work<br>
+                <input type="radio" name="category" value="Home Chore" id="Home chores filter">Home Chore<br>
+                <input type="radio" name="category" value="Hobby" id="Hobby filter">Hobby<br>
+                <input type="radio" name="category" value="Other" id="Other filter">Other<br>
+                <span name="error message sort/filter" id="Filter category error" style="color: red;" hidden="hidden">* Please select a category to filter</span>
+            </div>
+            <button id="Close Sort/Filter">Close</button>
         </div>
 
         <br>
@@ -42,7 +96,7 @@
             <select name="category" id="category" value="">
                 <option value="" disabled selected>Select your option</option>
                 <option value="Work">Work</option>
-                <option value="Home Chores">Home Chores</option>
+                <option value="Home Chore">Home Chore</option>
                 <option value="Hobby">Hobby</option>
                 <option value="Other">Other</option>
             </select>
@@ -89,7 +143,7 @@
                 <label for="current_category">Category:</label>
                 <select name="current_category" id="current_category" disabled>
                     <option value="Work">Work</option>
-                    <option value="Home Chores">Home Chores</option>
+                    <option value="Home Chore">Home Chore</option>
                     <option value="Hobby">Hobby</option>
                     <option value="Other">Other</option>
                 </select>
