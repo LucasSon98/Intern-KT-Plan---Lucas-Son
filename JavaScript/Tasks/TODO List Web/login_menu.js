@@ -9,18 +9,6 @@ const login_error_span = document.getElementById('login_error');
 const return_button = document.getElementById('Return Main');
 
 
-const check_empty_input = function (element){
-    if (element.value == ""){
-        element.style.borderBottomColor = "red";
-        return true;
-    }else{
-        if (element.style.borderBottomColor !== "white"){
-            element.style.borderBottomColor !== "white"
-        }
-        return false;
-    }
-}
-
 window.onload = function() {
     // reset input values
     username_input.value = "";

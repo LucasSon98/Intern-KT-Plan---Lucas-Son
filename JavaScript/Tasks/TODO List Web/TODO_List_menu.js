@@ -234,11 +234,6 @@ Create_button.addEventListener(
             list_div.setAttribute('hidden','hidden');
         }
 
-        // Hide filter and sort options if shown
-        if (!sort_filter_button.getAttribute('hidden')){
-            sort_filter_button.setAttribute('hidden','hidden');
-        }
-
     }
 
 )
