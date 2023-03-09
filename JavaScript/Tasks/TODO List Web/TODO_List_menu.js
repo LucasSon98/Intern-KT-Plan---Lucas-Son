@@ -436,7 +436,7 @@ list.addEventListener(
     (element) => {
         if (edit_mode){
             // When hovering over a list element it turns blue
-            element.target.style.color = "blue";
+            element.target.style.color = "#1484b8";
         }
     }
 )

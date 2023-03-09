@@ -1,0 +1,128 @@
+
+body{
+    background-color: #272343;
+}
+
+h1 {
+    font-size: 50px;
+    font-family: Georgia, serif;
+    color: #9df7eb;
+}
+span {
+    color: #f99512;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ----------------------------------------------------------------------------------- */
+
+/*  JUMPING INPUT*/
+.text_input{
+    position: relative;
+    margin-bottom: 30px;
+    width: 30%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.text_input input{
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    padding:8px 0 5px 0;
+    font-size:16px;
+    color: #fff;
+    font-family: inherit;
+}
+
+.text_input label{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 16px;
+    color: #fff;
+    font-family: Georgia, serif;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+    font-family: inherit;
+}
+
+.text_input input:focus{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #9df7eb;
+
+}
+
+.text_input input:focus ~ label,
+.text_input input:valid ~ label{
+	top:-20px;
+	font-size: 12px;
+}
+
+/* ----------------------------------------------------------------------------------- */
+
+#Address .text_input input{
+    width: 49%;
+    margin-right: 1px;
+}
+
+
+#Address p{
+    position: relative;
+    left: -153px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#Gender{
+    color: #fff;
+    font-size: 16px;
+    display: inline;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#Image{
+    color: #fff;
+    font-size: 16px;
+    position: relative;
+    left: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#Registration_buttons button{
+    color: #272343;
+    background-color: #bae8e8;
+    border-radius: 10px;
+    border-color: #bae8e8;
+    border-style: solid;
+    font-size: 20px;
+    padding: 4px 10px;
+    font-family: Arial, Helvetica, sans-serif, serif;
+    font-weight: 600;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+
+#Registration_buttons button:hover{
+    cursor: pointer;
+}
+
+#input_error{
+    position: relative;
+    left: 360px;
+    top: -20px;
+}
+
+#Gender_error{
+    position: relative;
+    left: 280px;
+    top: -20px;
+}

@@ -3,78 +3,75 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="register_menu.css">
     <script type="text/javascript" src="register_menu.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    <div id="Registration box">
+    <center id="Registration_box">
         <h1>Registration</h1>
-        <label for="username/email">
-            Username/Email:
-        </label>
-        <input id="username/email" type="text">
-        <br><br>
 
-        <label for="password">
-            Password:
-        </label>
-        <input id="password" type="password">
-        <br><br>
+        <div class="text_input">
+            <input id="username/email" type="text" required="">
+            <label for="username/email">Username/Email</label>
+        </div>
 
-        <label for="First_Name">
-            First Name:
-        </label>
-        <input id="First_Name" type="text">
-        <br><br>
 
-        <label for="Last Name">
-            Last Name:
-        </label>
-        <input id="Last_Name" type="text">
+        <div class="text_input">
+            <input id="password" type="password" required="">
+            <label for="password">Password</label>
+        </div>
+
+        <div class="text_input">
+            <input id="First_Name" type="text" required="">
+            <label for="First_Name">First Name</label>
+        </div>
+        
+        <div class="text_input">
+            <input id="Last_Name" type="text" required="">
+            <label for="Last Name">Last Name</label>
+        </div>
+
+        <div id="Address" style="width: 30%;">
+            <p>Address:</p>
+            <div class="text_input" style="display: inline;">
+                <input id="Street" type="text" required="">
+                <label for="Street">Street</label>
+            </div>
+
+            <div class="text_input" style="display: inline;">
+                <input id="Street_Number" type="text" required="">
+                <label for="Street_Number">Number</label>
+            </div>
+            
+        </div>
         
         <br><br>
 
         <div id="Gender">
-            <p>Select your gender:</p>
-            <input type="radio" name="gender" value="Male" id="Male_button">Male <br>
-            <input type="radio" name="gender" value="Female" id="Female_button">Female <br>
-            <input type="radio" name="gender" value="Other" id="Other_button">Other <br>
+            <p style="display: inline;">Select your gender:</p>
+            <input type="radio" name="gender" value="Male" id="Male_button">Male
+            <input type="radio" name="gender" value="Female" id="Female_button">Female
+            <input type="radio" name="gender" value="Other" id="Other_button">Other
             <br>
             <span id="Gender_error"></span>
         </div>
 
-        <br>
-
-        <div id="Address">
-            Address:
-            <br><br>
-            <label for="Street">
-                Street:
-            </label>
-            <input id="Street" type="text">
-
-            <label for="Street_Number">
-                Number:
-            </label>
-            <input id="Street_Number" type="text">
-        </div>
-
         <br><br>
 
-        <label for="Image_File">
-            Select Profile Picture:
-            <br><br>
+        <div id="Image">
+            <label for="Image_File">Select Profile Picture:</label>
             <input type="file" id="Image_File" name="filename" accept="image/*" />
             <img id="user_picture" src="" alt="" hidden="hidden">
-        </label>
-
-        <br><br>
-
-        <button id="Submit">Submit</button>
-        <button id="Return Main">Return to Main Menu</button>
-
-        <span id="input_error" style="color: red;"></span>
-    </div>
+        </div>
+        
+        <div id="Registration_buttons">
+            <button id="Submit">Submit</button>
+            <button id="Return Main">Return to Main Menu</button>
+        </div>
+        <span id="input_error"></span>
+    </center>
+    
 
 
     <div id="Registration Success" hidden="hidden">

@@ -1,0 +1,37 @@
+body {
+    background-color: #272343;
+}
+
+h1 {
+    color: #acfcfc;
+    font-family: Georgia, serif;
+    font-size: 65px;
+}
+
+button {
+    color: #272343;
+    background-color: #bae8e8;
+    border-radius: 36px;
+    border-color: #bae8e8;
+    border-style: solid;
+    font-size: 30px;
+    padding: 4px 20px;
+    font-family: Arial, Helvetica, sans-serif, serif;
+    font-weight: 600;
+}
+
+.Register_button {
+    margin-right: 50px;
+}
+
+center {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+
+button:hover {
+    cursor: pointer;
+}

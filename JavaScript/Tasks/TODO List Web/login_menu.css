@@ -1,0 +1,86 @@
+
+body{
+    background-color: #272343;
+}
+
+h1 {
+    font-size: 50px;
+    font-family: Georgia, serif;
+    color: #9df7eb;
+    margin-bottom: 60px;
+}
+
+span {
+    color: #f99512;
+    position: relative;
+    left: 290px;
+    top: -55px;
+    /* display: inline, hidden; */
+}
+
+/* ----------------------------------------------------------------------------------- */
+
+/*  JUMPING INPUT*/
+.text_input{
+    position: relative;
+    margin-bottom: 30px;
+    width: 30%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.text_input input{
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    padding:8px 0 5px 0;
+    font-size:16px;
+    color: #fff;
+    font-family: inherit;
+}
+
+.text_input label{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 16px;
+    color: #fff;
+    font-family: Georgia, serif;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+    font-family: inherit;
+}
+
+.text_input input:focus{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #9df7eb;
+
+}
+
+.text_input input:focus ~ label,
+.text_input input:valid ~ label{
+	top:-14px;
+	font-size: 12px;
+}
+
+/* ----------------------------------------------------------------------------------- */
+
+.Buttons button{
+    color: #272343;
+    background-color: #bae8e8;
+    border-radius: 10px;
+    border-color: #bae8e8;
+    border-style: solid;
+    font-size: 20px;
+    padding: 4px 10px;
+    font-family: Arial, Helvetica, sans-serif, serif;
+    font-weight: 600;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+
+.Buttons button:hover{
+    cursor: pointer;
+}

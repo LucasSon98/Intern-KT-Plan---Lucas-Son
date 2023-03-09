@@ -11,11 +11,11 @@ const return_button = document.getElementById('Return Main');
 
 const check_empty_input = function (element){
     if (element.value == ""){
-        element.style.border = "3px solid #f71b2a";
+        element.style.borderBottomColor = "red";
         return true;
     }else{
-        if (element.style.border !== ""){
-            element.style.border = "";
+        if (element.style.borderBottomColor !== "white"){
+            element.style.borderBottomColor !== "white"
         }
         return false;
     }
@@ -40,13 +40,13 @@ Next_button.addEventListener(
             if (username_error_span.getAttribute('hidden')){
                 username_error_span.removeAttribute('hidden');
             }
-            username_input.style.border = "3px solid #f71b2a";
+            username_input.style.borderBottomColor = "red";
             username_isEmpty = true;
         }else{
             if (!username_error_span.getAttribute('hidden')){
                 username_error_span.setAttribute('hidden','hidden');
             }
-            username_input.style.border = "";
+            username_input.style.borderBottomColor = "white";
             username_isEmpty = false;
         }
 
@@ -54,13 +54,13 @@ Next_button.addEventListener(
             if (password_error_span.getAttribute('hidden')){
                 password_error_span.removeAttribute('hidden');
             }
-            password_input.style.border = "3px solid #f71b2a";
+            password_input.style.borderBottomColor = "red";
             password_isEmpty = true;
         }else{
             if (!password_error_span.getAttribute('hidden')){
                 password_error_span.setAttribute('hidden','hidden');
             }
-            password_input.style.border = "";
+            password_input.style.borderBottomColor = "white";
             password_isEmpty = false;
         }
 

@@ -14,11 +14,11 @@ const return_button = document.getElementById('Return Main');
 
 const check_empty_input = function (element){
     if (element.value == ""){
-        element.style.border = "3px solid #f71b2a";
+        element.style.borderBottomColor = "red";
         return true;
     }else{
-        if (element.style.border !== ""){
-            element.style.border = "";
+        if (element.style.borderBottomColor !== "white"){
+            element.style.borderBottomColor = "white";
         }
         return false;
     }
@@ -117,7 +117,6 @@ submit_button.addEventListener(
         if (gender_input == null){
             gender_input_isempty = true;
             gender_error_message.textContent = "* Please select a gender";
-            gender_error_message.style.color = "red";
         }else{
             if (gender_error_message.value !== ""){
                 gender_error_message.textContent = "";
@@ -127,13 +126,13 @@ submit_button.addEventListener(
 
         // Show error message if any input is missing. Also highlight the missing fields
         if (username_email_input_isempty || password_input_isempty || first_name_input_isempty || last_name_input_isempty || gender_input_isempty || address_street_input_isempty || address_street_number_input_isempty || profile_picture_input_isempty) {
-            input_error_message.textContent = "Please fill in the missing fields highlighted in red";
+            input_error_message.textContent = "* Please fill in the missing fields highlighted in red";
         }else{ // if no input is missing first check in the local storage if there isn't another existing user with same username
             let registration_username_attempt = localStorage.getItem(username_email_input.value);
 
             if (!registration_username_attempt){ // if it returns a null, meaning that the username doesn't exist, save it in the local storage
-                if (username_email_input.style.border !== ""){
-                    username_email_input.style.border = "";
+                if (username_email_input.style.borderBottomColor !== "white"){
+                    username_email_input.style.borderBottomColor = "white";
                 }
 
                 if (input_error_message.textContent !== ""){
@@ -145,7 +144,7 @@ submit_button.addEventListener(
 
                 localStorage.setItem(username_email_input.value, user_data_JSON);
 
-                document.getElementById('Registration box').setAttribute('hidden','hidden');
+                document.getElementById('Registration_box').setAttribute('hidden','hidden');
                 document.getElementById('Registration Success').removeAttribute('hidden');
 
                 let tID = setTimeout(function () {
@@ -159,7 +158,7 @@ submit_button.addEventListener(
             }
             else{
                 input_error_message.textContent = "A user with the same username already exists. Please try another username.";
-                username_email_input.style.border = "3px solid #f71b2a";
+                username_email_input.style.borderBottomColor = "red";
                 }
             }
             
