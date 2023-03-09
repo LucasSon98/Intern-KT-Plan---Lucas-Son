@@ -1,3 +1,36 @@
+
+body{
+    background-color: #272343;
+}
+
+
+#Profile_tab, #TODO_List_tab{
+    background-color: #f1f1f1;
+}
+
+p, label, input, select, option, li{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #272343;
+    font-size: 16px;
+}
+
+#TODO_List_tab button, #Profile_tab button{
+    color: #272343;
+    background-color: #bae8e8;
+    border-color: #272343;
+    border-radius: 5px;
+    border-style: solid;
+    font-size: 16px;
+    padding: 4px 10px;
+    font-family: Arial, Helvetica, sans-serif, serif;
+    font-weight: 600;
+    margin-right: 20px;
+
+}
+
+
+
 /* Style the tab */
 .tab {
     overflow: hidden;
@@ -45,36 +78,6 @@ ul li:hover, ul li:focus {
 
 
 /* -------------------------------------------------------------------------------------------- */
-
-body{
-    background-color: #272343;
-}
-
-
-#Profile_tab, #TODO_List_tab{
-    background-color: #f1f1f1;
-}
-
-p, label, input, select, option, li{
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    color: #272343;
-    font-size: 16px;
-}
-
-button{
-    color: #272343;
-    background-color: #bae8e8;
-    border-color: #272343;
-    border-radius: 5px;
-    border-style: solid;
-    font-size: 16px;
-    padding: 4px 10px;
-    font-family: Arial, Helvetica, sans-serif, serif;
-    font-weight: 600;
-    margin-right: 20px;
-
-}
 
 #upper_buttons{
     margin-top: 20px;
