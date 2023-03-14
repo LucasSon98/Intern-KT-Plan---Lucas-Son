@@ -145,7 +145,7 @@ submit_button.addEventListener(
                 localStorage.setItem(username_email_input.value, user_data_JSON);
 
                 document.getElementById('Registration_box').setAttribute('hidden','hidden');
-                document.getElementById('Registration Success').removeAttribute('hidden');
+                document.getElementById('Registration_Success').removeAttribute('hidden');
 
                 let tID = setTimeout(function () {
 

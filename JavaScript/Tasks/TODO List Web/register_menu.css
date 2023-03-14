@@ -124,3 +124,13 @@ span {
     left: 280px;
     top: -20px;
 }
+
+
+#Registration_Success{
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
