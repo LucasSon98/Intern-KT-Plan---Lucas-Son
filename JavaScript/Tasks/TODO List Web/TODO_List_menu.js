@@ -1298,6 +1298,5 @@ apply_sort_button.addEventListener('click', ()=> {
         })
 
     }
-    
 
 })
